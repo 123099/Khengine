@@ -1,18 +1,20 @@
 #include <iostream>
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include "Graphics/Window.hpp"
 
 int main()
 {
-	int const initResult = glfwInit();
-	
-	if(initResult != GLFW_TRUE)
+	if(!glfwInit())
 	{
 		std::cout << "Error initializing GLFW!" << '\n';
+		return 1;
 	}
-	else
+	
+	if(!glewInit())
 	{
-		std::cout << "Init successful!" << '\n';
+		std::cout << "Error initializing GLEW" << '\n';
+		return 2;
 	}
 	
 	Khengine::Graphics::Window window("Simple Game", 1280, 720);
