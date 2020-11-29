@@ -11,13 +11,13 @@ int main()
 		return 1;
 	}
 	
-	if(!glewInit())
+	Khengine::Graphics::Window window("Simple Game", 1280, 720);
+	
+	if(glewInit() != GLEW_OK)
 	{
 		std::cout << "Error initializing GLEW" << '\n';
 		return 2;
 	}
-	
-	Khengine::Graphics::Window window("Simple Game", 1280, 720);
 	
 	while(!window.ShouldClose())
 	{
