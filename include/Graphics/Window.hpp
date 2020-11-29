@@ -4,7 +4,6 @@
 
 #pragma once
 
-#include <cstdint>
 #include <string>
 #include <memory>
 #include <GLFW/glfw3.h>
@@ -14,22 +13,26 @@ namespace Khengine::Graphics
 	class Window
 	{
 	public:
-		Window(std::string title, uint32_t width, uint32_t height);
+		Window(std::string title, int width, int height);
 		
 	public:
-		void Close();
+		void Close() const;
 		bool ShouldClose() const;
 		
 	public:
-		void Update() const;
+		void Resize(int width, int height);
+		
+	public:
+		void Clear() const;
+		void Update();
 		
 	private:
 		void Init();
 		
 	private:
 		std::string title;
-		uint32_t width;
-		uint32_t height;
+		int width;
+		int height;
 		
 	private:
 		struct GLFWwindowDeleter
