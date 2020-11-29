@@ -5,20 +5,23 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_executable(${PROJECT_NAME})
 
-find_package(OpenGL REQUIRED)
-
-# includes
+# Public Includes
 target_include_directories(${PROJECT_NAME} PUBLIC include)
 target_include_directories(${PROJECT_NAME} PUBLIC externals/glfw/include)
+target_include_directories(${PROJECT_NAME} PUBLIC externals/glew/include)
 
-# sources
+# GLFW
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 add_subdirectory(externals/glfw)
 
+# GLEW
+add_subdirectory(externals/glew)
+
+# Source code
 add_subdirectory(src)
 
 # libraries
 target_link_libraries(${PROJECT_NAME} glfw)
-target_link_libraries(${PROJECT_NAME} OpenGL::GL)
+target_link_libraries(${PROJECT_NAME} libglew_static)
