@@ -7,3 +7,5 @@ add_subdirectory(externals/glfw)
 include_directories(externals/glfw/include)
 
 add_executable(Khengine main.cpp)
+
+target_link_libraries(Khengine glfw ${GLFW_LIBRARIES})
